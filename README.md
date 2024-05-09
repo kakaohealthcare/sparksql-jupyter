@@ -46,6 +46,11 @@ pip install sparksql-jupyter
 |`variable`|Capture dataframe in a local variable|
 |`-j` `--jinja`|Capture dataframe in a local variable in jinja2 template|
 
+## Distribution
+
+```
+twine upload --repository-url https://path/to/repo/ dist/sparksql_jupyter-{version}-py36-none-any.whl
+```
 
 ## Release Note
 
