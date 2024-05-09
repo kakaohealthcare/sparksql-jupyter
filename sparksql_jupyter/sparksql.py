@@ -5,6 +5,7 @@ from IPython.core.display import HTML
 from IPython.core.magic import Magics, cell_magic, magics_class, needs_local_scope
 from IPython.core.magic_arguments import argument, magic_arguments, parse_argstring
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import date_format
 from traitlets import Int
 from jinja2 import Environment, StrictUndefined
 
@@ -76,6 +77,10 @@ def get_results(df, limit):
         return str(value)
 
     header = df.columns
+    for column_name, data_type in df.dtypes:
+        if data_type == "timestamp":
+            df = df.withColumn(column_name, date_format(df[column_name], "yyyy-MM-dd HH:mm:ss"))
+        
     contents = list(map(lambda row: list(map(convert_value, row)), df.take(limit + 1)))
 
     return header, contents
