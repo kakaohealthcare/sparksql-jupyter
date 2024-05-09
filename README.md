@@ -47,4 +47,8 @@ pip install sparksql-jupyter
 |`-j` `--jinja`|Capture dataframe in a local variable in jinja2 template|
 
 
+## Release Note
+
+- 2024/05/09
+  - stringify timestamp with timezone columns before seriealization
 
